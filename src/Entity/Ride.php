@@ -2,10 +2,21 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity
+ *
+ * @ApiResource(
+ *      attributes={
+ *          "normalization_context"={"groups"={"ride-read"}},
+ *          "denormalization_context"={"groups"={"write"}}
+ *      },
+ *      itemOperations={"get"},
+ *      collectionOperations={"get"}
+ * )
  */
 class Ride
 {
@@ -15,6 +26,8 @@ class Ride
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *
+     * @Groups("ride-read")
      */
     private $id;
 
@@ -22,6 +35,8 @@ class Ride
      * @var float|null
      *
      * @ORM\Column(type="float")
+     *
+     * @Groups("ride-read")
      */
     private $duration;
 
@@ -29,6 +44,8 @@ class Ride
      * @var int|null
      *
      * @ORM\Column(type="integer")
+     *
+     * @Groups("ride-read")
      */
     private $distance;
 
@@ -36,6 +53,8 @@ class Ride
      * @var string|null
      *
      * @ORM\Column(type="text")
+     *
+     * @Groups("ride-read")
      */
     private $description;
 
@@ -43,6 +62,8 @@ class Ride
      * @var \DateTime|null
      *
      * @ORM\Column(type="datetime")
+     *
+     * @Groups("ride-read")
      */
     private $startAt;
 
@@ -50,6 +71,8 @@ class Ride
      * @var User
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="rides")
+     *
+     * @Groups("ride-read")
      */
     private $author;
 
@@ -57,6 +80,8 @@ class Ride
      * @var RideType|null
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\RideType")
+     *
+     * @Groups("ride-read")
      */
     private $rideType;
 
