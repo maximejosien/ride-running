@@ -1,5 +1,34 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<h1>HELLO</h1>
+
+    <table class="table">
+        <thead>
+            <th>Type de course</th>
+            <th>Début</th>
+            <th>Description</th>
+            <th>Durée</th>
+            <th>Distance</th>
+            <th>Vitesse moyenne</th>
+            <th>Allure moyenne</th>
+            <th>Auteur</th>
+        </thead>
+        <tbody>
+        {% for ride in rides %}
+            <tr>
+                <td>{{ ride.rideType.name }}</td>
+                <td>{{ ride.startAt }}</td>
+                <td>{{ ride.description }}</td>
+                <td>{{ ride.duration }} minutes</td>
+                <td>{{ ride.distance }}m</td>
+                <td>TODO</td>
+                <td>TODO</td>
+                <td>{{ ride.author.email }}</td>
+                <td><a class="btn btn-primary">Détail</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
 {% endblock %}

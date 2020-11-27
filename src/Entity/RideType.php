@@ -2,10 +2,14 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity
+ *
+ * @ApiResource
  */
 class RideType
 {
@@ -15,6 +19,8 @@ class RideType
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *
+     * @Groups("ride-read")
      */
     private $id;
 
@@ -22,6 +28,8 @@ class RideType
      * @var string
      *
      * @ORM\Column(type="string")
+     *
+     * @Groups("ride-read")
      */
     private $name;
 

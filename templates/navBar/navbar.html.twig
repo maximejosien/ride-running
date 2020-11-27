@@ -11,6 +11,9 @@
                     <a class="nav-link" href="{{ relative_path(path('app_rides_list')) }}">Dernières Courses</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ relative_path(path('app_rides_list_user', {'userId': app.user.id})) }}">Mes courses</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ relative_path(path('app_rides_add')) }}">Ajouter une course</a>
                 </li>
                 <li class="nav-item">
