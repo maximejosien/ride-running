@@ -19,28 +19,28 @@ class Ride
     private $id;
 
     /**
-     * @var float
+     * @var float|null
      *
      * @ORM\Column(type="float")
      */
     private $duration;
 
     /**
-     * @var int
+     * @var int|null
      *
      * @ORM\Column(type="integer")
      */
     private $distance;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @ORM\Column(type="text")
      */
     private $description;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      *
      * @ORM\Column(type="datetime")
      */
@@ -54,7 +54,7 @@ class Ride
     private $author;
 
     /**
-     * @var RideType
+     * @var RideType|null
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\RideType")
      */
@@ -69,19 +69,19 @@ class Ride
     }
 
     /**
-     * @return float
+     * @return float|null
      */
-    public function getDuration(): float
+    public function getDuration(): ?float
     {
         return $this->duration;
     }
 
     /**
-     * @param float $duration
+     * @param float|null $duration
      *
      * @return $this
      */
-    public function setDuration(float $duration): self
+    public function setDuration(?float $duration): self
     {
         $this->duration = $duration;
 
@@ -89,19 +89,19 @@ class Ride
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getDistance(): int
+    public function getDistance(): ?int
     {
         return $this->distance;
     }
 
     /**
-     * @param int $distance
+     * @param int|null $distance
      *
      * @return $this
      */
-    public function setDistance(int $distance): self
+    public function setDistance(?int $distance): self
     {
         $this->distance = $distance;
 
@@ -109,19 +109,19 @@ class Ride
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
     /**
-     * @param string $description
+     * @param string|null $description
      *
      * @return $this
      */
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
@@ -129,19 +129,19 @@ class Ride
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getStartAt(): \DateTime
+    public function getStartAt(): ?\DateTime
     {
         return $this->startAt;
     }
 
     /**
-     * @param \DateTime $startAt
+     * @param \DateTime|null $startAt
      *
      * @return $this
      */
-    public function setStartAt(\DateTime $startAt): self
+    public function setStartAt(?\DateTime $startAt): self
     {
         $this->startAt = $startAt;
 
@@ -169,19 +169,19 @@ class Ride
     }
 
     /**
-     * @return RideType
+     * @return RideType|null
      */
-    public function getRideType(): RideType
+    public function getRideType(): ?RideType
     {
         return $this->rideType;
     }
 
     /**
-     * @param RideType $rideType
+     * @param RideType|null $rideType
      *
      * @return $this
      */
-    public function setRideType(RideType $rideType): self
+    public function setRideType(?RideType $rideType): self
     {
         $this->rideType = $rideType;
 
