@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -42,6 +44,18 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @var Collection|Ride[]
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Ride", mappedBy="author")
+     */
+    private $rides;
+
+    public function __construct()
+    {
+        $this->rides = new ArrayCollection();
+    }
 
     /**
      * @return int|null
@@ -115,6 +129,52 @@ class User implements UserInterface
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * @return Ride[]|Collection
+     */
+    public function getRides()
+    {
+        return $this->rides;
+    }
+
+    /**
+     * @param $rides
+     *
+     * @return $this
+     */
+    public function setRides($rides): self
+    {
+        $this->rides = $rides;
+
+        return $this;
+    }
+
+    /**
+     * @param Ride $ride
+     *
+     * @return $this
+     */
+    public function addRide(Ride $ride): self
+    {
+        if (!$this->rides->contains($ride)) {
+            $this->rides[] = $ride;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Ride $ride
+     *
+     * @return $this
+     */
+    public function removeRide(Ride $ride): self
+    {
+        $this->rides->remove($ride);
 
         return $this;
     }
