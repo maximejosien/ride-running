@@ -8,8 +8,8 @@
     <p>Description : {{ ride.description }}</p>
     <p>Durée : {{ ride.duration }} minutes</p>
     <p>Distance : {{ ride.distance }}m</p>
-    <p>Vitesse moyenne : TODO</p>
-    <p>Allure moyenne : TODO</p>
+    <p>Vitesse moyenne : {{ (ride.distance / 1000) / (ride.duration / 60) }} km/h</p>
+    <p>Allure moyenne : {{ ride.duration / (ride.distance / 1000) }} min/km</p>
     <p>Auteur : {{ ride.author.email }}</p>
 
 {% endblock %}
