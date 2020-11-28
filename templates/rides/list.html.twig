@@ -21,10 +21,15 @@
                 <td>{{ ride.description }}</td>
                 <td>{{ ride.duration }} minutes</td>
                 <td>{{ ride.distance }}m</td>
-                <td>TODO</td>
-                <td>TODO</td>
+                <td>{{ (ride.distance / 1000) / (ride.duration / 60) }} km/h</td>
+                <td>{{ ride.duration / (ride.distance / 1000) }} min/km</td>
                 <td>{{ ride.author.email }}</td>
-                <td><a class="btn btn-primary">Détail</a></td>
+                <td><a href="{{ relative_path(path('app_rides_detail', {'rideId': ride.id})) }}" class="btn btn-primary">Détail</a></td>
+                {% if app.user and ride.author.email == app.user.email %}
+                <td><a href="{{ relative_path(path('app_rides_edit', {'rideId': ride.id})) }}" class="btn btn-primary">Modifier</a></td>
+                {% else %}
+                <td></td>
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>
