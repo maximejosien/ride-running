@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Détail de la course</h1>
+    <p>Type de course : {{ ride.rideType.name }}</p>
+    <p>Début : {{ ride.startAt }}</p>
+    <p>Description : {{ ride.description }}</p>
+    <p>Durée : {{ ride.duration }} minutes</p>
+    <p>Distance : {{ ride.distance }}m</p>
+    <p>Vitesse moyenne : TODO</p>
+    <p>Allure moyenne : TODO</p>
+    <p>Auteur : {{ ride.author.email }}</p>
+
+{% endblock %}

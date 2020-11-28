@@ -56,6 +56,25 @@ class RideService
     }
 
     /**
+     * @param int $rideId
+     *
+     * @return array
+     */
+    private function callRidesItem(int $rideId): array
+    {
+        $client = HttpClient::create();
+
+        $response = $client->request(
+            Request::METHOD_GET,
+            sprintf('http://webserver/api/rides/%d', $rideId)
+        );
+
+        $response = json_decode($response->getContent(), true);
+
+        return $response;
+    }
+
+    /**
      * @return array
      *
      * @throws ClientExceptionInterface
@@ -88,6 +107,27 @@ class RideService
     {
         try {
             $rides = $this->callRidesOfUserCollection($userId);
+        } catch (\Exception $e) {
+            throw new BadRequestHttpException($e->getMessage());
+        }
+
+        return $rides;
+    }
+
+    /**
+     * @param int $userId
+     *
+     * @return array
+     *
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
+    public function getRideDetailFromAPI(int $userId): array
+    {
+        try {
+            $rides = $this->callRidesItem($userId);
         } catch (\Exception $e) {
             throw new BadRequestHttpException($e->getMessage());
         }

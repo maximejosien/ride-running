@@ -39,7 +39,7 @@ class RideFormType extends AbstractType
                 'required' => true,
                 'label' => 'Description',
             ])
-            ->add('Ajouter', SubmitType::class)
+            ->add('Appliquer', SubmitType::class)
         ;
     }
 }

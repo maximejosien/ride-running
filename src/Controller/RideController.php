@@ -69,12 +69,59 @@ class RideController extends AbstractController
             $entityManager->persist($ride);
             $entityManager->flush();
 
-            return $this->render('rides/list.html.twig', [
-                'rideForm' => $form->createView(),
-            ]);
+            return $this->redirectToRoute('app_rides_list');
         }
 
         return $this->render('rides/add.html.twig', [
+            'rideForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/rides/detail/{rideId}", name="app_rides_detail")
+     *
+     * @param int $rideId
+     * @param RideService $rideService
+     *
+     * @return Response
+     */
+    public function rideDetail(
+        int $rideId,
+        RideService $rideService
+    ): Response {
+        return $this->render('rides/detail.html.twig', [
+            'ride' => $rideService->getRideDetailFromAPI($rideId),
+        ]);
+    }
+
+    /**
+     * @Route("/rides/edit/{rideId}", name="app_rides_edit")
+     *
+     * @param int $rideId
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     *
+     * @return Response
+     */
+    public function edit(
+        int $rideId,
+        Request $request,
+        EntityManagerInterface $entityManager
+    ): Response {
+        $ride = $entityManager->getRepository(Ride::class)->findOneBy([
+            'id' => $rideId
+        ]);
+
+        $form = $this->createForm(RideFormType::class, $ride);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_rides_list');
+        }
+
+        return $this->render('rides/edit.html.twig', [
             'rideForm' => $form->createView(),
         ]);
     }
