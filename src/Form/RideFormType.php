@@ -24,7 +24,7 @@ class RideFormType extends AbstractType
             ])
             ->add('startAt', DateType::class, [
                 'required' => true,
-                'widget' => 'choice',
+                'widget' => 'single_text',
                 'label' => 'Date de début',
             ])
             ->add('duration', NumberType::class, [

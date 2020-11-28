@@ -17,7 +17,7 @@
         {% for ride in rides %}
             <tr>
                 <td>{{ ride.rideType.name }}</td>
-                <td>{{ ride.startAt }}</td>
+                <td>{{ ride.startAt|date("d/m/Y H:i:s") }}</td>
                 <td>{{ ride.description }}</td>
                 <td>{{ ride.duration }} minutes</td>
                 <td>{{ ride.distance }}m</td>

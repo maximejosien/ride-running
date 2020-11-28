@@ -4,7 +4,7 @@
 
     <h1>Détail de la course</h1>
     <p>Type de course : {{ ride.rideType.name }}</p>
-    <p>Début : {{ ride.startAt }}</p>
+    <p>Début : {{ ride.startAt|date("d/m/Y H:i:s") }}</p>
     <p>Description : {{ ride.description }}</p>
     <p>Durée : {{ ride.duration }} minutes</p>
     <p>Distance : {{ ride.distance }}m</p>
